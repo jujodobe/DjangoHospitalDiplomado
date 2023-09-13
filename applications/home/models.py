@@ -21,7 +21,13 @@ class Ciudad(models.Model):
 
 
     def __str__(self):
-        return f"Ciudad: {self.Descripcion} - Nombre corto = {self.short_name} - id: {self.id}"
+        return f" {self.Descripcion} "
+
+class Habilidades(models.Model):
+    habilidad = models.CharField('Habilidad', max_length=30)
+
+    def __str__(self):
+        return f"{self.habilidad}"
 
 class Persona(models.Model):
     Nombre = models.CharField('Nombre de la persona', max_length=50)
@@ -29,3 +35,4 @@ class Persona(models.Model):
     FechaNacimiento=models.DateField('Fecha de Nacimiento')
     Celular=models.CharField('Celular', max_length=20)
     ciudad=models.ForeignKey(Ciudad, on_delete=models.CASCADE)
+    habilidades = models.ManyToManyField(Habilidades)
